@@ -1,0 +1,184 @@
+/* =========================
+   BACKGROUND – GRAPHITE FACTORY
+========================= */
+.icon-bg {
+  height: 100vh;
+  background: radial-gradient(circle at center, #101418, #05070a);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Moving industrial grid */
+.icon-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  animation: gridShift 22s linear infinite;
+}
+
+@keyframes gridShift {
+  from { transform: translate(0,0); }
+  to   { transform: translate(-64px,-64px); }
+}
+
+/* =========================
+   CARD – GRAPHITE PANEL
+========================= */
+.icon-card {
+  width: 340px;
+  padding: 34px;
+  background: linear-gradient(145deg, #1b2026, #0e1115);
+  border-radius: 18px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+
+  border: 1px solid #2f3742;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.04),
+    0 24px 48px rgba(0,0,0,0.75);
+
+  animation: machineRise 0.8s ease;
+}
+
+@keyframes machineRise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   ROTATING ENERGY FRAME
+========================= */
+.icon-card::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border-radius: 22px;
+  border: 2px dashed rgba(56,189,248,0.35);
+  animation: rotateGear 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotateGear {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* =========================
+   TITLE
+========================= */
+.icon-card h2 {
+  color: #e5e7eb;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+
+/* =========================
+   INPUT – ELECTRIC SLOT
+========================= */
+.icon-input {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(145deg, #0b1220, #050812);
+  border: 1px solid #2563eb;
+  border-radius: 12px;
+  padding: 11px;
+  margin-bottom: 16px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.85);
+}
+
+.icon-input span {
+  margin-right: 8px;
+  font-size: 18px;
+  color: #38bdf8;
+}
+
+.icon-input input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+  background: transparent;
+  color: #e0f2fe;
+}
+
+.icon-input input::placeholder {
+  color: #7dd3fc;
+}
+
+/* Power on */
+.icon-input:focus-within {
+  border-color: #38bdf8;
+  box-shadow: 0 0 16px rgba(56,189,248,0.65);
+}
+
+/* =========================
+   BUTTON – POWER MODULE
+========================= */
+.icon-btn {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(145deg, #2563eb, #1e3a8a);
+  color: #eff6ff;
+  border: 1px solid #60a5fa;
+  border-radius: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,0.15),
+    0 6px 0 #020617;
+
+  transition: transform 0.15s ease;
+}
+
+.icon-btn:hover {
+  background: linear-gradient(145deg, #3b82f6, #1d4ed8);
+}
+
+.icon-btn:active {
+  transform: translateY(4px);
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,0.15),
+    0 2px 0 #020617;
+}
+
+/* =========================
+   FLOATING UI NAV
+========================= */
+.ui-next-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 18px;
+  background: linear-gradient(145deg, #020617, #0b1220);
+  color: #38bdf8;
+  border: 1px solid #2563eb;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  letter-spacing: 1px;
+
+  box-shadow: 0 0 24px rgba(56,189,248,0.55);
+  animation: leverFloat 4s ease-in-out infinite;
+}
+
+@keyframes leverFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}

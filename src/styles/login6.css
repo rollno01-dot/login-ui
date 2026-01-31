@@ -1,0 +1,240 @@
+/* ===============================
+   BASE
+================================ */
+.split-page {
+  min-height: 100vh;
+  display: flex;
+  font-family: system-ui, sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ===============================
+   LEFT PANEL
+================================ */
+.left {
+  flex: 1;
+  min-width: 320px;
+  background: linear-gradient(135deg, #0a66c2, #004182);
+  background-size: 200% 200%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+  position: relative;
+  animation: gradientShift 12s ease infinite;
+}
+
+.left h1 {
+  font-size: 44px;
+  margin-bottom: 12px;
+  animation: fadeLeft 0.8s ease;
+}
+
+.left p {
+  font-size: 16px;
+  opacity: 0.9;
+  animation: fadeLeft 0.8s ease 0.15s forwards;
+}
+
+/* floating glow */
+.left::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  filter: blur(60px);
+  top: 20%;
+  left: -100px;
+  animation: floatGlow 8s ease-in-out infinite;
+}
+
+/* ===============================
+   RIGHT PANEL
+================================ */
+.right {
+  flex: 1;
+  min-width: 360px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+  animation: panelIn 0.9s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+/* ===============================
+   INPUTS (STAGGERED)
+================================ */
+.right input {
+  margin-bottom: 16px;
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: inputReveal 0.6s ease forwards;
+}
+
+.right input:nth-of-type(1) {
+  animation-delay: 0.3s;
+}
+
+.right input:nth-of-type(2) {
+  animation-delay: 0.45s;
+}
+
+.right input:focus {
+  outline: none;
+  border-color: #0a66c2;
+  box-shadow: 0 0 0 3px rgba(10,102,194,0.15);
+}
+
+/* ===============================
+   BUTTON
+================================ */
+.right button {
+  padding: 12px;
+  background: #0a66c2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: buttonReveal 0.6s ease 0.7s forwards;
+}
+
+/* shine effect */
+.right button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.4),
+    transparent
+  );
+  transform: translateX(-120%);
+  animation: shine 3s infinite;
+}
+
+.right button:hover {
+  background: #004182;
+  transform: translateY(-2px);
+}
+
+/* ===============================
+   NEXT UI BUTTON
+================================ */
+.ui-next-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 18px;
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  animation: navFloat 3s ease-in-out infinite;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 900px) {
+  .split-page {
+    flex-direction: column;
+  }
+
+  .left {
+    min-height: 40vh;
+    text-align: center;
+    align-items: center;
+  }
+
+  .right {
+    min-width: 100%;
+    padding: 40px 24px;
+  }
+}
+
+/* ===============================
+   ANIMATIONS
+================================ */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateX(60px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes floatGlow {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+
+@keyframes inputReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes buttonReveal {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shine {
+  0% { transform: translateX(-120%); }
+  50% { transform: translateX(120%); }
+  100% { transform: translateX(120%); }
+}
+
+@keyframes navFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ===============================
+   ACCESSIBILITY
+================================ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+  }
+}

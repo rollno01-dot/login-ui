@@ -1,0 +1,175 @@
+/* Background */
+.kid-bg {
+  height: 100vh;
+  background: linear-gradient(to top, #87ceeb, #e0f7ff);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Clouds */
+.cloud {
+  position: absolute;
+  width: 180px;
+  height: 60px;
+  background: white;
+  border-radius: 50px;
+  opacity: 0.9;
+  animation: moveCloud 30s linear infinite;
+}
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  background: white;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  top: -40px;
+}
+
+.cloud::before {
+  left: 20px;
+}
+
+.cloud::after {
+  right: 20px;
+}
+
+.cloud-1 {
+  top: 15%;
+  left: -200px;
+}
+
+.cloud-2 {
+  top: 35%;
+  left: -300px;
+  animation-duration: 40s;
+}
+
+/* Balloons */
+.balloon {
+  position: absolute;
+  width: 60px;
+  height: 80px;
+  border-radius: 50% 50% 50% 50%;
+  animation: floatBalloon 6s ease-in-out infinite;
+}
+
+.balloon-1 {
+  background: #ff6f91;
+  left: 15%;
+  bottom: 10%;
+}
+
+.balloon-2 {
+  background: #ffc75f;
+  right: 15%;
+  bottom: 20%;
+  animation-delay: 2s;
+}
+
+/* Card */
+.kid-card {
+  width: 320px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 20px 0 #ffd966;
+  animation: bounceIn 1s ease;
+  z-index: 10;
+}
+
+.kid-card h2 {
+  color: #ff6f91;
+}
+
+.kid-card p {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+.kid-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 14px;
+  border-radius: 15px;
+  border: 2px solid #cce7ff;
+  outline: none;
+  font-size: 14px;
+}
+
+.kid-card input:focus {
+  border-color: #ff6f91;
+}
+
+/* Button */
+.kid-btn {
+  width: 100%;
+  padding: 12px;
+  background: #6bcf63;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #4caf50;
+}
+
+.kid-btn:hover {
+  transform: translateY(-2px);
+}
+
+.kid-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #4caf50;
+}
+
+/* Next UI */
+.ui-next-btn {
+  margin-top: 25px;
+  background: none;
+  border: none;
+  color: #444;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Animations */
+@keyframes moveCloud {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(1400px);
+  }
+}
+
+@keyframes floatBalloon {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.6);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
