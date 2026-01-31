@@ -15,7 +15,8 @@ export default function Login1() {
           <input type="email" placeholder="Email or Phone" />
           <input type="password" placeholder="Password" />
 
-          <a href="#" className="forgot">Forgot password?</a>
+          <button className="forgot">Forgot password?</button>
+
 
           <button type="submit">Sign in</button>
         </form>
