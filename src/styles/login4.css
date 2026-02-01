@@ -1,4 +1,6 @@
-/* Base with gradient morphing background */
+/* ===============================
+   BASE
+================================ */
 body {
   margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
@@ -6,7 +8,9 @@ body {
   overflow: hidden;
 }
 
-/* Animated gradient background with multiple layers */
+/* ===============================
+   BACKGROUND
+================================ */
 .glass-bg {
   height: 100vh;
   display: flex;
@@ -17,89 +21,163 @@ body {
   background: linear-gradient(45deg, #0a0a14, #1a1a2e, #16213e);
 }
 
-/* Animated gradient orbs */
+/* ⭐ NEW: Subtle background pulse */
+@keyframes bgPulse {
+  0%, 100% { background-size: 100% 100%; }
+  50% { background-size: 110% 110%; }
+}
+
+.glass-bg {
+  animation: bgPulse 20s ease-in-out infinite;
+  background-size: 100% 100%;
+}
+
+/* ===============================
+   ENHANCED GRADIENT ORBS
+================================ */
 .glass-bg::before,
 .glass-bg::after {
   content: '';
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
-  animation: morphOrb 20s infinite ease-in-out;
+  filter: blur(45px);
   opacity: 0.5;
+  animation: morphOrb 35s ease-in-out infinite;
+  will-change: transform;
+  z-index: 1;
 }
 
 .glass-bg::before {
-  width: 400px;
-  height: 400px;
+  width: 420px;
+  height: 420px;
   background: linear-gradient(45deg, #667eea, #764ba2);
-  top: -100px;
-  left: -100px;
+  top: -120px;
+  left: -120px;
   animation-delay: 0s;
 }
 
 .glass-bg::after {
-  width: 300px;
-  height: 300px;
+  width: 320px;
+  height: 320px;
   background: linear-gradient(45deg, #f093fb, #f5576c);
-  bottom: -50px;
-  right: -50px;
-  animation-delay: 10s;
-}
-
-/* Floating particles */
-.floating-particle {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  animation: floatParticle 15s infinite linear;
-}
-
-.floating-particle:nth-child(1) {
-  width: 8px;
-  height: 8px;
-  top: 20%;
-  left: 10%;
-  animation-delay: 0s;
-}
-
-.floating-particle:nth-child(2) {
-  width: 12px;
-  height: 12px;
-  top: 60%;
-  left: 80%;
+  bottom: -80px;
+  right: -80px;
   animation-delay: 2s;
 }
 
-.floating-particle:nth-child(3) {
-  width: 6px;
-  height: 6px;
-  top: 80%;
-  left: 20%;
+/* ⭐ NEW: Third floating orb */
+.glass-orb {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  background: linear-gradient(45deg, #4facfe, #00f2fe);
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.3;
+  top: 50%;
+  left: 10%;
+  animation: floatOrb 30s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* ===============================
+   ENHANCED FLOATING PARTICLES
+================================ */
+.floating-particle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  animation: floatParticle 32s linear infinite;
+  z-index: 2;
+}
+
+/* Create particle variety */
+.floating-particle:nth-child(1) { 
+  width: 6px; 
+  height: 6px; 
+  top: 15%; 
+  left: 20%; 
+  animation-duration: 32s;
+}
+.floating-particle:nth-child(2) { 
+  width: 8px; 
+  height: 8px; 
+  top: 70%; 
+  left: 75%; 
+  animation-duration: 40s;
+  animation-delay: 5s;
+}
+.floating-particle:nth-child(3) { 
+  width: 4px; 
+  height: 4px; 
+  top: 85%; 
+  left: 30%; 
+  animation-duration: 36s;
+  animation-delay: 3s;
+}
+
+/* ⭐ NEW: Additional particles with different animations */
+.floating-particle:nth-child(4) { 
+  width: 10px; 
+  height: 10px; 
+  top: 25%; 
+  left: 85%; 
+  background: rgba(102, 126, 234, 0.4);
+  animation: floatParticle2 28s linear infinite;
+  animation-delay: 7s;
+}
+.floating-particle:nth-child(5) { 
+  width: 5px; 
+  height: 5px; 
+  top: 60%; 
+  left: 10%; 
+  background: rgba(240, 147, 251, 0.4);
+  animation: floatParticle3 44s linear infinite;
+  animation-delay: 1s;
+}
+.floating-particle:nth-child(6) { 
+  width: 7px; 
+  height: 7px; 
+  top: 90%; 
+  left: 60%; 
+  background: rgba(245, 87, 108, 0.4);
+  animation: floatParticle 38s linear infinite;
   animation-delay: 4s;
 }
 
-/* Advanced Glass Card */
+/* ===============================
+   ENHANCED GLASS CARD
+================================ */
 .glass-card {
   width: 340px;
   padding: 36px;
   background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
   border-radius: 24px;
   color: white;
-  animation: glassFloat 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
   position: relative;
-  z-index: 10;
   overflow: hidden;
-  transition: all 0.4s ease;
+  animation: glassFloat 1.2s cubic-bezier(.68, -0.55, .265, 1.55), 
+             cardGlow 8s ease-in-out infinite;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  z-index: 10;
 }
 
-/* Card inner shine */
+/* ⭐ NEW: Enhanced 3D hover with shadow */
+.glass-card:hover {
+  transform: translateY(-6px) scale(1.02) rotateX(2deg) rotateY(2deg);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.4),
+              0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* ⭐ NEW: Entry shimmer effect */
+@keyframes entryShimmer {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(200%) rotate(25deg); }
+}
+
 .glass-card::before {
   content: '';
   position: absolute;
@@ -108,130 +186,70 @@ body {
   width: 200%;
   height: 200%;
   background: linear-gradient(
-    45deg,
-    transparent,
-    rgba(255, 255, 255, 0.03),
-    rgba(255, 255, 255, 0.06),
-    rgba(255, 255, 255, 0.03),
-    transparent
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
   );
-  animation: lightSweep 8s infinite linear;
-  z-index: -1;
+  animation: entryShimmer 1.5s ease-out;
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* Card border gradient animation */
+/* ===============================
+   CARD SHINE
+================================ */
 .glass-card::after {
   content: '';
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c, #667eea);
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+  animation: lightSweep 9s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ===============================
+   ENHANCED BORDER GLOW
+================================ */
+.glass-card-border {
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    45deg,
+    #667eea,
+    #764ba2,
+    #f093fb,
+    #f5576c,
+    #667eea
+  );
   background-size: 400% 400%;
   border-radius: 26px;
-  z-index: -2;
-  animation: borderFlow 6s linear infinite;
-  opacity: 0.3;
-  filter: blur(8px);
+  z-index: -1;
+  animation: borderFlow 14s linear infinite, 
+             borderPulse 4s ease-in-out infinite,
+             borderRotate 120s linear infinite;
+  filter: blur(3px);
+  opacity: 0.35;
 }
 
-/* Advanced Animations */
-@keyframes glassFloat {
-  0% {
-    opacity: 0;
-    transform: translateY(40px) scale(0.8) rotateX(15deg);
-    filter: blur(10px);
-  }
-  50% {
-    transform: translateY(-10px) scale(1.05) rotateX(0);
-    filter: blur(0);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1) rotateX(0);
-  }
+/* ⭐ NEW: Additional inner border effect */
+.glass-card-inner-border {
+  position: absolute;
+  inset: 1px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 23px;
+  z-index: 0;
 }
 
-@keyframes morphOrb {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-    border-radius: 50% 30% 70% 40%;
-  }
-  25% {
-    transform: translate(50px, -30px) scale(1.1);
-    border-radius: 40% 60% 30% 70%;
-  }
-  50% {
-    transform: translate(-30px, 40px) scale(0.9);
-    border-radius: 70% 40% 50% 60%;
-  }
-  75% {
-    transform: translate(-40px, -20px) scale(1.05);
-    border-radius: 30% 70% 60% 40%;
-  }
-}
-
-@keyframes floatParticle {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg);
-    opacity: 0.2;
-  }
-  25% {
-    transform: translate(30px, -40px) rotate(90deg);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translate(-20px, 30px) rotate(180deg);
-    opacity: 0.8;
-  }
-  75% {
-    transform: translate(-30px, -20px) rotate(270deg);
-    opacity: 0.4;
-  }
-}
-
-@keyframes lightSweep {
-  0% {
-    transform: rotate(0deg) translateX(-100%);
-  }
-  100% {
-    transform: rotate(360deg) translateX(-100%);
-  }
-}
-
-@keyframes borderFlow {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes textGlow {
-  0%, 100% {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-  }
-  50% {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
-                 0 0 30px rgba(102, 126, 234, 0.4);
-  }
-}
-
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-  20%, 40%, 60%, 80% { transform: translateX(5px); }
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-15px); }
-  60% { transform: translateY(-7px); }
-}
-
-/* Card title with glow animation */
+/* ===============================
+   ENHANCED TITLE
+================================ */
 .glass-card h2 {
   text-align: center;
   margin-bottom: 24px;
@@ -241,49 +259,33 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: textGlow 3s infinite ease-in-out;
+  animation: textGlow 3s ease-in-out infinite,
+             titleFloat 6s ease-in-out infinite;
   position: relative;
+  z-index: 2;
 }
 
+/* ⭐ NEW: Enhanced underline with gradient animation */
 .glass-card h2::after {
   content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
+  display: block;
+  width: 50px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #667eea, #764ba2, transparent);
-  animation: expandLine 1.5s ease-out forwards;
+  margin: 8px auto 0;
+  background: linear-gradient(90deg, #667eea, #f093fb);
+  animation: underlinePulse 2.5s ease-in-out infinite,
+             underlineWidth 4s ease-in-out infinite;
+  border-radius: 2px;
 }
 
-@keyframes expandLine {
-  from {
-    width: 0;
-    opacity: 0;
-  }
-  to {
-    width: 60px;
-    opacity: 1;
-  }
-}
-
-/* Enhanced Input Fields */
+/* ===============================
+   ENHANCED INPUTS
+================================ */
 .input-group {
-  position: relative;
   margin-bottom: 24px;
-  animation: slideIn 0.8s ease-out 0.3s both;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  animation: slideFade 0.6s ease both;
+  position: relative;
+  z-index: 2;
 }
 
 .glass-card input {
@@ -293,8 +295,8 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   color: white;
+  transition: all 0.3s ease;
   font-size: 15px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(5px);
 }
 
@@ -305,50 +307,42 @@ body {
 
 .glass-card input:focus {
   outline: none;
-  border-color: rgba(102, 126, 234, 0.8);
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 
-    0 0 0 3px rgba(102, 126, 234, 0.2),
-    0 10px 20px rgba(0, 0, 0, 0.2);
-  transform: translateY(-2px);
-  animation: inputPulse 2s infinite;
+  border-color: #667eea;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
 }
 
-@keyframes inputPulse {
-  0%, 100% {
-    box-shadow: 
-      0 0 0 3px rgba(102, 126, 234, 0.2),
-      0 10px 20px rgba(0, 0, 0, 0.2);
-  }
-  50% {
-    box-shadow: 
-      0 0 0 3px rgba(102, 126, 234, 0.4),
-      0 15px 30px rgba(0, 0, 0, 0.3);
-  }
+.glass-card input:focus::placeholder {
+  transform: translateX(10px);
+  opacity: 0.7;
 }
 
-/* Input icons */
-.input-icon {
+/* ⭐ NEW: Input label animation */
+.input-label {
   position: absolute;
-  right: 16px;
   top: 50%;
+  left: 20px;
   transform: translateY(-50%);
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.7);
   transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 3;
 }
 
-.input-group:focus-within .input-icon {
+.input-group input:focus + .input-label,
+.input-group input:not(:placeholder-shown) + .input-label {
+  top: 0;
+  left: 15px;
+  font-size: 12px;
   color: #667eea;
-  transform: translateY(-50%) scale(1.2);
-  animation: iconBounce 0.5s ease;
+  background: rgba(10, 10, 20, 0.8);
+  padding: 0 8px;
+  border-radius: 4px;
 }
 
-@keyframes iconBounce {
-  0%, 100% { transform: translateY(-50%) scale(1.2); }
-  50% { transform: translateY(-50%) scale(1.4); }
-}
-
-/* Enhanced Button with 3D effect */
+/* ===============================
+   ENHANCED BUTTON
+================================ */
 .glass-card button {
   width: 100%;
   padding: 16px;
@@ -357,186 +351,240 @@ body {
   border-radius: 12px;
   color: white;
   font-weight: 600;
-  font-size: 16px;
   cursor: pointer;
+  animation: buttonBreath 3s ease-in-out infinite;
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  animation: buttonEntrance 0.8s ease-out 0.6s both;
-  box-shadow: 
-    0 8px 25px rgba(102, 126, 234, 0.4),
-    0 2px 0 rgba(255, 255, 255, 0.2) inset;
+  z-index: 2;
 }
 
-@keyframes buttonEntrance {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Button shine effect */
-.glass-card button::before {
+/* ⭐ NEW: Button shine effect */
+.glass-card button::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
   background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
+    to right,
+    transparent 20%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 80%
   );
-  transition: left 0.7s ease;
+  transform: rotate(30deg);
+  transition: transform 0.6s;
+  z-index: 1;
 }
 
-.glass-card button:hover {
-  transform: translateY(-3px);
-  box-shadow: 
-    0 15px 35px rgba(102, 126, 234, 0.6),
-    0 2px 0 rgba(255, 255, 255, 0.2) inset;
-  background: linear-gradient(45deg, #764ba2, #667eea);
+.glass-card button:hover::after {
+  transform: translateX(100%) rotate(30deg);
 }
 
-.glass-card button:hover::before {
-  left: 100%;
-}
-
+/* ⭐ NEW: Enhanced click ripple effect */
 .glass-card button:active {
-  transform: translateY(0);
-  animation: bounce 0.5s;
+  transform: scale(0.95);
+  animation: buttonClick 0.3s ease;
 }
 
-/* Button loading animation */
-.glass-card button.loading {
-  pointer-events: none;
+/* ===============================
+   ENHANCED ANIMATIONS
+================================ */
+@keyframes glassFloat {
+  0% { 
+    opacity: 0; 
+    transform: translateY(40px) scale(0.85) rotateX(10deg); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) scale(1) rotateX(0); 
+  }
 }
 
-.glass-card button.loading::after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  top: 50%;
-  left: 50%;
-  margin: -10px 0 0 -10px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-top-color: white;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+@keyframes cardGlow {
+  0%, 100% { 
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+  50% { 
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
 }
 
-@keyframes spin {
+@keyframes morphOrb {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1); 
+  }
+  25% { 
+    transform: translate(40px, -30px) scale(1.05); 
+  }
+  50% { 
+    transform: translate(-30px, 40px) scale(0.95); 
+  }
+  75% { 
+    transform: translate(-40px, -20px) scale(1.03); 
+  }
+}
+
+@keyframes floatOrb {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1); 
+    opacity: 0.3;
+  }
+  33% { 
+    transform: translate(60px, -40px) scale(1.1); 
+    opacity: 0.4;
+  }
+  66% { 
+    transform: translate(-40px, 50px) scale(0.9); 
+    opacity: 0.25;
+  }
+}
+
+@keyframes floatParticle {
+  0%, 100% { 
+    transform: translate(0, 0) rotate(0deg); 
+    opacity: 0.2; 
+  }
+  50% { 
+    transform: translate(-30px, -50px) rotate(180deg); 
+    opacity: 0.7; 
+  }
+}
+
+@keyframes floatParticle2 {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1); 
+  }
+  25% { 
+    transform: translate(40px, -30px) scale(1.2); 
+  }
+  50% { 
+    transform: translate(20px, 40px) scale(0.8); 
+  }
+  75% { 
+    transform: translate(-30px, 20px) scale(1.1); 
+  }
+}
+
+@keyframes floatParticle3 {
+  0%, 100% { 
+    transform: translate(0, 0); 
+  }
+  33% { 
+    transform: translate(-50px, 30px); 
+  }
+  66% { 
+    transform: translate(30px, -40px); 
+  }
+}
+
+@keyframes lightSweep {
+  from { transform: translateX(-100%) rotate(15deg); }
+  to { transform: translateX(100%) rotate(15deg); }
+}
+
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes borderRotate {
+  from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-/* Success animation */
-.success-check {
-  display: inline-block;
-  animation: checkmarkDraw 0.5s ease-in-out forwards;
+@keyframes borderPulse {
+  0%, 100% { opacity: 0.25; filter: blur(3px); }
+  50% { opacity: 0.45; filter: blur(5px); }
 }
 
-@keyframes checkmarkDraw {
-  from {
-    stroke-dashoffset: 100;
-    opacity: 0;
+@keyframes textGlow {
+  0%, 100% { 
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); 
   }
-  to {
-    stroke-dashoffset: 0;
-    opacity: 1;
+  50% { 
+    text-shadow: 0 0 24px rgba(102, 126, 234, 0.6),
+                 0 0 36px rgba(102, 126, 234, 0.3); 
   }
 }
 
-/* Error animation */
-.error-shake {
-  animation: shake 0.5s ease-in-out;
+@keyframes titleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
 
-/* Floating action button */
-.floating-action {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 56px;
-  height: 56px;
-  background: linear-gradient(45deg, #667eea, #764ba2);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-  animation: float 3s ease-in-out infinite;
-  transition: all 0.3s ease;
-  z-index: 100;
+@keyframes underlinePulse {
+  0%, 100% { opacity: 0.4; width: 50px; }
+  50% { opacity: 1; width: 80px; }
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
+@keyframes underlineWidth {
+  0%, 100% { width: 50px; }
+  50% { width: 70px; }
+}
+
+@keyframes slideFade {
+  from { 
+    opacity: 0; 
+    transform: translateX(-20px); 
   }
-  50% {
-    transform: translateY(-10px);
+  to { 
+    opacity: 1; 
+    transform: translateX(0); 
   }
 }
 
-.floating-action:hover {
-  transform: scale(1.1) rotate(90deg);
-  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+@keyframes buttonBreath {
+  0%, 100% { 
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.45); 
+  }
+  50% { 
+    box-shadow: 0 14px 35px rgba(102, 126, 234, 0.7),
+                inset 0 0 15px rgba(255, 255, 255, 0.1); 
+  }
 }
 
-/* Responsive adjustments */
+@keyframes buttonClick {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.92); }
+  100% { transform: scale(0.95); }
+}
+
+/* ===============================
+   REDUCED MOTION
+================================ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===============================
+   RESPONSIVE ADJUSTMENTS
+================================ */
 @media (max-width: 480px) {
   .glass-card {
-    width: 90%;
+    width: 300px;
     padding: 28px;
-    margin: 20px;
   }
   
-  .floating-action {
-    bottom: 20px;
-    right: 20px;
+  .glass-bg::before {
+    width: 300px;
+    height: 300px;
   }
-}
-
-/* Add some decorative elements */
-.decorative-ring {
-  position: absolute;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  animation: ringPulse 3s infinite ease-in-out;
-}
-
-.decorative-ring:nth-child(1) {
-  width: 200px;
-  height: 200px;
-  top: -100px;
-  left: -100px;
-  animation-delay: 0s;
-}
-
-.decorative-ring:nth-child(2) {
-  width: 150px;
-  height: 150px;
-  bottom: -75px;
-  right: -75px;
-  animation-delay: 1.5s;
-}
-
-@keyframes ringPulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.1;
+  
+  .glass-bg::after {
+    width: 250px;
+    height: 250px;
   }
-  50% {
-    transform: scale(1.2);
-    opacity: 0.3;
+  
+  .glass-orb {
+    width: 200px;
+    height: 200px;
   }
 }
